@@ -3,27 +3,26 @@ import json
 
 #VARIABLES
 HEADER = 'Welcome To Grocery Lister'
-COMMANDS = ['create list', 'create recipe', 'help', 'exit']
+COMMANDS = ['create list', 'add recipe', 'help', 'exit']
 CATEGORIES = ['chicken', 'beef', 'pork', 'fish', 'sausage', 'vegetarian']
 grocery_list = {}
 exit_program = False
 
-#TODO: Display Grocery List
-def print_list():
-    for food in grocery_list:
-        print(food)
+#TODO: Remove Ingredients
+
+#TODO: Import Recipe
 
 def print_commands():
     for command in COMMANDS:
         print(command)
 
-#TODO: Add Item To Grocery List
-def add_item():
-    grocery_list.append(input("what item do you want to add >>"))
 
-def get_recipes():
+def create_grocery_list():
     with open('data/recipes.json', 'r') as data_file:
         recipes = json.load(data_file)
+
+    with open('data/ignore.txt', 'r') as data_file:
+        ignore = data_file.read().splitlines()
 
     print("Please select which recipes to add to the grocery list:\n")
     index = 1
@@ -33,24 +32,18 @@ def get_recipes():
 
     chosen_recipes = input('>> ').split(',')
 
+    print(ignore)
     for index in chosen_recipes:
         recipe = list(recipes.keys())[int(index) - 1]
-        for ingredient,quantity in recipes[recipe]["ingredients"].items():
-            if ingredient in grocery_list:
+        for ingredient, quantity in recipes[recipe]["ingredients"].items():
+            if ingredient in ignore:
+                pass
+            elif ingredient in grocery_list:
                 grocery_list[ingredient] = grocery_list[ingredient] + quantity
             else:
                 grocery_list[ingredient] = quantity
-    print_grocery_list()
 
-def print_grocery_list():
-    print("______________")
-    print("You will need:")
-    print("______________")
-    for ingredient,quantity in grocery_list.items():
-        print(f'{ingredient} x{quantity}')
 
-def create_grocery_list():
-    pass
 
 def print_header():
     print('\n')
@@ -59,16 +52,25 @@ def print_header():
     print('*********************************')
     print('\n')
 
-print_header()
-get_recipes()
 
-#TODO: Main Loop
+def print_grocery_list():
+    print("______________")
+    print("You will need:")
+    print("______________")
+    for ingredient, quantity in grocery_list.items():
+        print(f'{ingredient} x{quantity}')
+
+
+print_header()
+
+#Main Loop
 while not exit_program:
 
     match input('>> '):
         case 'create list':
             create_grocery_list()
-        case 'create recipe':
+            print_grocery_list()
+        case 'add recipe':
             pass
         case 'help':
             print_commands()
