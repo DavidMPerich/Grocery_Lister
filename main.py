@@ -15,6 +15,19 @@ exit_program = False
 #TODO: Order Ingredients
 
 
+def remove_items():
+    print('Which items would you like to remove?')
+    items_to_remove = input('>> ').split(',')
+    offset = 1
+    if '' in items_to_remove:
+        pass
+    else:
+        for index in items_to_remove:
+            item = list(grocery_list.keys())[int(index) - offset]
+            grocery_list.pop(item)
+            offset += 1
+
+
 def create_grocery_list():
     with open('data/recipes.json', 'r') as data_file:
         recipes = json.load(data_file)
@@ -29,14 +42,13 @@ def create_grocery_list():
         index += 1
 
     chosen_recipes = input('>> ').split(',')
-
     for index in chosen_recipes:
         recipe = list(recipes.keys())[int(index) - 1]
-        for ingredient, quantity in recipes[recipe]["ingredients"].items():
+        for ingredient, quantity, in recipes[recipe]["ingredients"].items():
             if ingredient in ignore:
                 pass
             elif ingredient in grocery_list:
-                grocery_list[ingredient] = grocery_list[ingredient] + quantity
+                grocery_list[ingredient] += quantity
             else:
                 grocery_list[ingredient] = quantity
 
@@ -60,8 +72,10 @@ def print_grocery_list():
     print("______________")
     print("You will need:")
     print("______________")
+    index = 1
     for ingredient, quantity in grocery_list.items():
-        print(f'{ingredient} x{quantity}')
+        print(f'{index}. {ingredient} x{quantity}')
+        index += 1
     print('\n')
 
 
@@ -73,6 +87,8 @@ while not exit_program:
     match input('>> '):
         case 'create list':
             create_grocery_list()
+            print_grocery_list()
+            remove_items()
             print_grocery_list()
         case 'add recipe':
             pass
