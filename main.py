@@ -5,7 +5,7 @@ import json
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'create recipe', 'help', 'exit']
 CATEGORIES = ['chicken', 'beef', 'pork', 'fish', 'sausage', 'vegetarian']
-grocery_list = []
+grocery_list = {}
 exit_program = False
 
 #TODO: Display Grocery List
@@ -25,24 +25,29 @@ def get_recipes():
     with open('data/recipes.json', 'r') as data_file:
         recipes = json.load(data_file)
 
-        print("Please select which recipes to add to the grocery list:\n")
-        index = 1;
-        for recipe in recipes.keys():
-            print(f'{index}. {recipe} (serving size: {recipes[recipe]['serving size']}) - ${recipes[recipe]['approximate cost']}/meal')
-            index += 1
+    print("Please select which recipes to add to the grocery list:\n")
+    index = 1
+    for recipe in recipes.keys():
+        print(f'{index}. {recipe} (serving size: {recipes[recipe]['serving size']}) - ${recipes[recipe]['approximate cost']}/meal')
+        index += 1
 
-        response = input('>> ')
-        chosen_recipes = response.split(',')
+    chosen_recipes = input('>> ').split(',')
 
-        print("______________")
-        print("You will need:")
-        print("______________")
+    for index in chosen_recipes:
+        recipe = list(recipes.keys())[int(index) - 1]
+        for ingredient,quantity in recipes[recipe]["ingredients"].items():
+            if ingredient in grocery_list:
+                grocery_list[ingredient] = grocery_list[ingredient] + quantity
+            else:
+                grocery_list[ingredient] = quantity
+    print_grocery_list()
 
-        for index in chosen_recipes:
-            recipe = list(recipes.keys())[int(index) - 1]
-            for ingredient,quantity in recipes[recipe]["ingredients"].items():
-                print(f'{ingredient} x{quantity}')
-
+def print_grocery_list():
+    print("______________")
+    print("You will need:")
+    print("______________")
+    for ingredient,quantity in grocery_list.items():
+        print(f'{ingredient} x{quantity}')
 
 def create_grocery_list():
     pass
