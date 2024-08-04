@@ -1,0 +1,30 @@
+{
+  "Cool Ranch Chicken Tacos": {
+    "ingredients": {
+      "package of chicken breasts": 1,
+      "olive oil": 1,
+      "red wine vinegar": 1,
+      "taco seasoning packet": 1,
+      "ranch seasoning packet": 1,
+      "package of flour tortillas": 1,
+      "bag of shredded lettuce": 1,
+      "jar of salsa": 1
+    },
+    "approximate cost": 4.75,
+    "serving size": 6
+  },
+  "Sausage Orzo": {
+    "ingredients": {
+      "mild italian chicken sausage": 1,
+      "yellow onion": 0.5,
+      "frozen corn": 1,
+      "dry orzo": 1,
+      "can of low sodium chicken broth": 2,
+      "package of baby spinach": 1,
+      "grated parmesan": 1,
+      "black pepper": 1
+    },
+    "approximate cost": 6.25,
+    "serving size": 4
+  }
+}
