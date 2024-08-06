@@ -8,7 +8,7 @@ CATEGORIES = ['chicken', 'beef', 'pork', 'fish', 'sausage', 'vegetarian']
 grocery_list = {}
 exit_program = False
 
-#TODO: Remove Ingredients
+#TODO: Add Ingredients
 
 #TODO: Import Recipe
 
@@ -16,16 +16,23 @@ exit_program = False
 
 
 def remove_items():
-    print('Which items would you like to remove?')
-    items_to_remove = input('>> ').split(',')
-    offset = 1
-    if '' in items_to_remove:
-        pass
-    else:
-        for index in items_to_remove:
-            item = list(grocery_list.keys())[int(index) - offset]
+    print("Would you like to remove any items? (y/n)")
+    response = input('>> ')
+
+    while response == 'y':
+        print('Which item would you like to remove?')
+        item_to_remove = input('>> ')
+        print('How many would you like to remove?')
+        quantity_to_remove = int((input('>> ')))
+        item = list(grocery_list.keys())[int(item_to_remove) - 1]
+        if grocery_list[item] == quantity_to_remove:
             grocery_list.pop(item)
-            offset += 1
+        elif grocery_list[item] > quantity_to_remove:
+            grocery_list[item] -= quantity_to_remove
+        else:
+            print('You do not have that many to remove')
+        print('Would you like to remove any more items? (y/n)')
+        response = input('>> ')
 
 
 def create_grocery_list():
