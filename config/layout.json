@@ -1,0 +1,248 @@
+{
+    "Sale Items": [],
+    "Produce": [
+        "Berries",
+        "Citrus",
+        "Apples",
+        "Potatoes",
+        "Onions",
+        "Tomatoes",
+        "Exotic Vegetables",
+        "Mushrooms",
+        "Fresh Herbs",
+        "Fresh Dips",
+        "Bagged Greens",
+        "Carrots",
+        "Cold Dressing",
+        "Leafy Greens",
+        "Greens",
+        "Peppers",
+        "Squash",
+        "Bananas",
+        "Exotic Fruits"
+    ],
+    "Bakery": [
+        "Jarred Herbs",
+        "Baked Goods"
+    ],
+    "Corner": [
+        "Block Cheese",
+        "Hot Foods",
+        "Sushi",
+        "Cheese Crumbles",
+        "Charcuterie",
+        "Dips",
+        "Cold Salads"
+    ],
+    "Butcher": [
+        "Frozen Seafood",
+        "Fresh Seafood",
+        "Steak",
+        "Chicken",
+        "Beef",
+        "Pork",
+        "Sausage",
+        "Ready-To-Go Meat",
+        "Deli Meat",
+        "Breakfast Meat"
+    ],
+    "Dairy": [
+        "Cream Cheese",
+        "Cheese",
+        "Pasta"
+    ],
+    "Liquor": [
+        "Tall Boys",
+        "Liquor",
+        "Wine",
+        "Craft Beer"
+    ],
+    "Aisle 10": [
+        "Butter",
+        "Bread",
+        "Salad Dressing",
+        "Condiments"
+    ],
+    "Aisle 12": [
+        "Asian Ingredients",
+        "Ramen",
+        "Pasta Sauce",
+        "Gnocchi",
+        "Pasta",
+        "Pickled Veggies",
+        "Salad Toppings",
+        "Processed Cheese",
+        "Eggs"
+    ],
+    "Aisle 14": [
+        "Beans",
+        "Canned Vegetables",
+        "Tomatoes",
+        "Chilies",
+        "Canned Fruit",
+        "Canned Seafood"
+    ],
+    "Aisle 16": [
+        "Rice",
+        "Couscous",
+        "Seasoning Packets",
+        "Salsas",
+        "Tortillas",
+        "Biscuits"
+    ],
+    "Aisle 18": [
+        "Soups",
+        "Broths",
+        "Oils",
+        "Vinegars",
+        "Herbs",
+        "Spices"
+    ],
+    "Aisle 19": [
+        "Rice Cakes",
+        "Popcorn",
+        "Nuts",
+        "Jerky"
+    ],
+    "Aisle 20": [
+        "Sugar",
+        "Bread Crumbs",
+        "Flours",
+        "Cake Mixes",
+        "Baking Chocolates",
+        "Marshmallows",
+        "Yogurts"
+    ],
+    "Aisle 22": [
+        "Peanut Butters",
+        "Jellies",
+        "Oatmeal",
+        "Syrup"
+    ],
+    "Aisle 23": [
+        "Candy",
+        "Healthy Chips"
+    ],
+    "Aisle 24/26": [
+        "Cereal",
+        "Milk"
+    ],
+    "Aisle 25": [
+        "Chips"
+    ],
+    "Aisle 27": [
+        "Diapers"
+    ],
+    "Aisle 28": [
+        "Nutrition Bars"
+    ],
+    "Aisle 30": [
+        "Coffees",
+        "Teas",
+        "Creamers"
+    ],
+    "Aisle 29": [
+        "Baby Foods"
+    ],
+    "Seasonal": [],
+    "Aisle 32": [
+        "Water",
+        "Sparkling Water"
+    ],
+    "Aisle 34": [
+        "Orange Juices",
+        "Sports Drinks"
+    ],
+    "Aisle 36/38": [
+        "Sodas"
+    ],
+    "Aisle 40": [
+        "Frozen Pizzas",
+        "Frozen Chicken",
+        "Frozen Meals"
+    ],
+    "Aisle 42": [
+        "Frozen Vegetables",
+        "Frozen Breads",
+        "Frozen Pastas",
+        "Frozen Potatoes",
+        "Frozen Snacks"
+    ],
+    "Aisle 44": [
+        "Ice Cream",
+        "Frozen Breakfasts"
+    ],
+    "Aisle 46": [
+        "School Supplies",
+        "Office Supplies"
+    ],
+    "Aisle 47": [
+        "Dog Food"
+    ],
+    "Aisle 48": [
+        "Cat Food"
+    ],
+    "Aisle 49": [
+        "Dish Soap",
+        "Floor Cleaners",
+        "Cleaning Wipes",
+        "Drain Cleaners"
+    ],
+    "Aisle 50": [
+        "Laundry Detergents",
+        "Fabric Softeners"
+    ],
+    "Aisle 51": [
+        "Toilet Paper",
+        "Paper Towels"
+    ],
+    "Aisle 52": [
+        "Storage Bags",
+        "Disposable Tableware",
+        "Wraps",
+        "Food Containers"
+    ],
+    "Aisle 53": [
+        "Charcoal",
+        "Garbage Bags"
+    ],
+    "Aisle 54": [
+        "Automotive Supplies"
+    ],
+    "Aisle 55": [
+        "Soap",
+        "Body Wash"
+    ],
+    "Aisle 56": [
+        "Women's Haircare"
+    ],
+    "Aisle 57": [
+        "Men's Haircare",
+        "Shaving",
+        "Deodorant",
+        "Travel Supplies"
+    ],
+    "Aisle 58": [
+        "Feminine Care",
+        "Oral Care",
+        "Skin Care"
+    ],
+    "Aisle 59": [
+        "Vitamins"
+    ],
+    "Aisle 60": [
+        "Eye Care",
+        "Band Aids",
+        "Foot Care",
+        "Pain Relief",
+        "Sleep Aids",
+        "Laxatives"
+    ],
+    "Aisle 61": [
+        "Cold Medicine",
+        "Family Planning"
+    ],
+    "Gift Aisle": [
+        "Greeting Cards"
+    ]
+}

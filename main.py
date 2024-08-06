@@ -4,7 +4,7 @@ import json
 #VARIABLES
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'exit']
-CATEGORIES = ['chicken', 'beef', 'pork', 'fish', 'sausage', 'vegetarian']
+CATEGORIES =
 grocery_list = {}
 exit_program = False
 
@@ -39,7 +39,7 @@ def create_grocery_list():
     with open('data/recipes.json', 'r') as data_file:
         recipes = json.load(data_file)
 
-    with open('data/ignore.txt', 'r') as data_file:
+    with open('config/ignore.txt', 'r') as data_file:
         ignore = data_file.read().splitlines()
 
     print("Please select which recipes to add to the grocery list:\n")
