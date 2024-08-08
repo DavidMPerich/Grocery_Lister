@@ -4,7 +4,6 @@ import json
 #VARIABLES
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'exit']
-CATEGORIES =
 grocery_list = {}
 exit_program = False
 
@@ -14,25 +13,7 @@ exit_program = False
 
 #TODO: Order Ingredients
 
-
-def remove_items():
-    print("Would you like to remove any items? (y/n)")
-    response = input('>> ')
-
-    while response == 'y':
-        print('Which item would you like to remove?')
-        item_to_remove = input('>> ')
-        print('How many would you like to remove?')
-        quantity_to_remove = int((input('>> ')))
-        item = list(grocery_list.keys())[int(item_to_remove) - 1]
-        if grocery_list[item] == quantity_to_remove:
-            grocery_list.pop(item)
-        elif grocery_list[item] > quantity_to_remove:
-            grocery_list[item] -= quantity_to_remove
-        else:
-            print('You do not have that many to remove')
-        print('Would you like to remove any more items? (y/n)')
-        response = input('>> ')
+#TODO: Refactor
 
 
 def create_grocery_list():
@@ -59,6 +40,52 @@ def create_grocery_list():
             else:
                 grocery_list[ingredient] = quantity
 
+
+def remove_items():
+    print("Would you like to remove any items? (y/n)")
+    response = input('>> ')
+
+    while response == 'y':
+        print('Which item would you like to remove?')
+        item_to_remove = input('>> ')
+        print('How many would you like to remove?')
+        quantity_to_remove = int((input('>> ')))
+        #TODO: Make sure item is in the list
+        item = list(grocery_list.keys())[int(item_to_remove) - 1]
+        if grocery_list[item] == quantity_to_remove:
+            grocery_list.pop(item)
+        elif grocery_list[item] > quantity_to_remove:
+            grocery_list[item] -= quantity_to_remove
+        else:
+            print('You do not have that many to remove')
+        print('Would you like to remove any more items? (y/n)')
+        response = input('>> ')
+
+
+def add_items():
+    print("Would you like to add any items? (y/n)")
+    response = input('>> ')
+
+    with open('data/additions.txt', 'r') as data_file:
+        additions = data_file.read().splitlines()
+
+    index = 1
+    for item in additions:
+        print(f'{index}. {item}')
+        index += 1
+
+    while response == 'y':
+        print('Which item would you like to add?')
+        item_to_add = input('>> ')
+        print('How many would you like to add?')
+        quantity_to_add = int((input('>> ')))
+        item = additions[int(item_to_add) - 1]
+        if item_to_add in grocery_list.keys():
+            grocery_list[item] += quantity_to_add
+        else:
+            grocery_list[item] = quantity_to_add
+        print('Would you like to add any more items? (y/n)')
+        response = input('>> ')
 
 def print_header():
     print('\n')
@@ -96,6 +123,8 @@ while not exit_program:
             create_grocery_list()
             print_grocery_list()
             remove_items()
+            print_grocery_list()
+            add_items()
             print_grocery_list()
         case 'add recipe':
             pass
