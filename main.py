@@ -5,7 +5,6 @@ import json
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'exit']
 grocery_list = {}
-ordered_grocery_list = {}
 exit_program = False
 
 #TODO: Add Ingredients
@@ -108,14 +107,14 @@ def display_grocery_list():
     print("You will need:")
     print("______________")
     index = 1
-    for ingredient, quantity in grocery_list.items():
-        print(f'{index}. {ingredient} x{quantity}')
+    for item, quantity in grocery_list.items():
+        print(f'{index}. {item} x{quantity}')
         index += 1
     print('\n')
 
 
 def order_grocery_list():
-    with open('config/test_layout.json', 'r') as data_file:
+    with open('config/layout.json', 'r') as data_file:
         layout = json.load(data_file)
 
     with open('config/category_lookup.json', 'r') as data_file:
@@ -123,13 +122,15 @@ def order_grocery_list():
 
     index = 1
     for aisle in list(layout.keys()):
-        print(aisle.upper())
-        for section in list(layout[aisle].keys()):
+        display_aisle = True
+        for section in layout[aisle]:
             for item, quantity in grocery_list.items():
                 if categories[item] == section:
+                    if display_aisle:
+                        print(aisle.upper())
+                        display_aisle = False
                     print(f'{index}. {item} x{quantity}')
                     index += 1
-                    # ordered_grocery_list[item] = grocery_list[item]
 
 
 print_header()
