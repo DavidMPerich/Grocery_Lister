@@ -26,23 +26,5 @@
     },
     "approximate cost": 6.25,
     "serving size": 4
-  },
-  "Chicken Bake": {
-    "ingredients": {
-      "package of chicken breasts": 1,
-      "can of green beans": 1,
-      "can of mushroom soup": 1
-    },
-    "approximate cost": 7,
-    "serving size": 6
-  },
-  "Chicken Kabobs": {
-    "ingredients": {
-      "package of chicken breasts": 1,
-      "package of skewers": 1,
-      "bbq sauce": 1
-    },
-    "approximate cost": 10,
-    "serving size": 4
   }
 }

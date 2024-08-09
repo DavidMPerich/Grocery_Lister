@@ -1,0 +1,30 @@
+{
+  "Produce": {
+    "Onions": [
+      "half yellow onion"
+    ],
+    "Leafy Greens": [
+      "package of baby spinach"
+    ]
+  },
+  "Butcher": {
+    "Sausage": [
+      "mild italian chicken sausage"
+    ]
+  },
+  "Aisle 12": {
+    "Pasta": [
+      "dry orzo"
+    ]
+  },
+  "Aisle 14": {
+    "Soup": [
+      "can of low sodium chicken broth"
+    ]
+  },
+  "Aisle 27": {
+    "Frozen Vegetables": [
+      "frozen corn"
+    ]
+  }
+}

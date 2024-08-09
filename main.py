@@ -5,6 +5,7 @@ import json
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'exit']
 grocery_list = {}
+ordered_grocery_list = {}
 exit_program = False
 
 #TODO: Add Ingredients
@@ -102,7 +103,7 @@ def print_commands():
     print(command_list)
 
 
-def print_grocery_list():
+def display_grocery_list():
     print("______________")
     print("You will need:")
     print("______________")
@@ -113,6 +114,24 @@ def print_grocery_list():
     print('\n')
 
 
+def order_grocery_list():
+    with open('config/test_layout.json', 'r') as data_file:
+        layout = json.load(data_file)
+
+    with open('config/category_lookup.json', 'r') as data_file:
+        categories = json.load(data_file)
+
+    index = 1
+    for aisle in list(layout.keys()):
+        print(aisle.upper())
+        for section in list(layout[aisle].keys()):
+            for item, quantity in grocery_list.items():
+                if categories[item] == section:
+                    print(f'{index}. {item} x{quantity}')
+                    index += 1
+                    # ordered_grocery_list[item] = grocery_list[item]
+
+
 print_header()
 
 #Main Loop
@@ -121,14 +140,17 @@ while not exit_program:
     match input('>> '):
         case 'create list':
             create_grocery_list()
-            print_grocery_list()
+            display_grocery_list()
             remove_items()
-            print_grocery_list()
+            display_grocery_list()
             add_items()
-            print_grocery_list()
+            display_grocery_list()
+            order_grocery_list()
+            exit_program = True
         case 'add recipe':
             pass
         case 'exit':
             exit_program = True
         case _:
             print("sorry that is not a command")
+
