@@ -1,8 +1,8 @@
 #IMPORTS
+from UI_Helper import print_header, print_commands, print_grocery_list
 import json
 
 #VARIABLES
-HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'exit']
 grocery_list = {}
 exit_program = False
@@ -87,31 +87,6 @@ def add_items():
         print('Would you like to add any more items? (y/n)')
         response = input('>> ')
 
-def print_header():
-    print('\n')
-    print('*********************************')
-    print(f'****{HEADER}****')
-    print('*********************************')
-    print('\n')
-
-
-def print_commands():
-    command_list = '|'
-    for command in COMMANDS:
-        command_list += command + '|'
-    print(command_list)
-
-
-def display_grocery_list():
-    print("______________")
-    print("You will need:")
-    print("______________")
-    index = 1
-    for item, quantity in grocery_list.items():
-        print(f'{index}. {item} x{quantity}')
-        index += 1
-    print('\n')
-
 
 def order_grocery_list():
     with open('config/layout.json', 'r') as data_file:
@@ -137,15 +112,15 @@ print_header()
 
 #Main Loop
 while not exit_program:
-    print_commands()
+    print_commands(COMMANDS)
     match input('>> '):
         case 'create list':
             create_grocery_list()
-            display_grocery_list()
+            print_grocery_list(grocery_list)
             remove_items()
-            display_grocery_list()
+            print_grocery_list(grocery_list)
             add_items()
-            display_grocery_list()
+            print_grocery_list(grocery_list)
             order_grocery_list()
             exit_program = True
         case 'add recipe':
