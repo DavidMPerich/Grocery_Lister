@@ -1,5 +1,5 @@
 #IMPORTS
-from UI_Helper import print_header, print_commands, print_grocery_list
+from UI_Helper import print_header, print_commands
 from grocery_list import GroceryList
 
 #VARIABLES
@@ -24,11 +24,8 @@ while not exit_program:
     match input('>> '):
         case 'create list':
             grocery_list.add_recipes()
-            print_grocery_list(grocery_list.items)
             grocery_list.remove_items()
-            print_grocery_list(grocery_list.items)
             grocery_list.add_items()
-            print_grocery_list(grocery_list.items)
             grocery_list.order_items()
             exit_program = True
         case 'add recipe':

@@ -13,14 +13,3 @@ def print_commands(commands):
     for command in commands:
         command_list += command + '|'
     print(command_list)
-
-
-def print_grocery_list(grocery_list):
-    print("______________")
-    print("You will need:")
-    print("______________")
-    index = 1
-    for item, quantity in grocery_list.items():
-        print(f'{index}. {item} x{quantity}')
-        index += 1
-    print('\n')

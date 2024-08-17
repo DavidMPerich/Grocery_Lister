@@ -30,6 +30,8 @@ class GroceryList:
                 else:
                     self.items[ingredient] = quantity
 
+        self.print_items()
+
     def add_items(self):
         print("Would you like to add any items? (y/n)")
         response = input('>> ')
@@ -55,6 +57,8 @@ class GroceryList:
             print('Would you like to add any more items? (y/n)')
             response = input('>> ')
 
+        self.print_items()
+
     def remove_items(self):
         print("Would you like to remove any items? (y/n)")
         response = input('>> ')
@@ -75,6 +79,8 @@ class GroceryList:
             print('Would you like to remove any more items? (y/n)')
             response = input('>> ')
 
+        self.print_items()
+
     def order_items(self):
         with open('config/layout.json', 'r') as data_file:
             layout = json.load(data_file)
@@ -93,3 +99,13 @@ class GroceryList:
                             display_aisle = False
                         print(f'{index}. {item} x{quantity}')
                         index += 1
+
+    def print_items(self):
+        print("______________")
+        print("You will need:")
+        print("______________")
+        index = 1
+        for item, quantity in self.items.items():
+            print(f'{index}. {item} x{quantity}')
+            index += 1
+        print('\n')
