@@ -1,8 +1,13 @@
 {
+  "andouille sausage": "Sausage",
   "bag of shredded lettuce": "Leafy Greens",
+  "bottle of heavy cream": "Creamers",
   "can of low sodium chicken broth": "Soups",
   "dry orzo": "Pasta",
   "frozen corn": "Frozen Vegetables",
+  "half box of farfalle": "Pasta",
+  "half can of crushed tomatoes": "Tomatoes",
+  "half pound of shrimp": "Fresh Seafood",
   "half yellow onion": "Onions",
   "jar of salsa": "Salsas",
   "mild italian chicken sausage": "Sausage",
@@ -11,6 +16,8 @@
   "package of chicken breasts": "Chicken",
   "package of flour tortillas": "Tortillas",
   "ranch seasoning packet": "Salad Dressing Seasoning",
+  "red bell pepper": "Peppers",
   "red wine vinegar": "Vinegars",
-  "taco seasoning packet": "Seasoning Packets"
+  "taco seasoning packet": "Seasoning Packets",
+  "yellow bell pepper": "Peppers"
 }

@@ -26,5 +26,30 @@
     },
     "approximate cost": 6.25,
     "serving size": 4
+  },
+  "Cajun Pasta": {
+    "ingredients": {
+      "half box of farfalle": 1,
+      "half pound of shrimp": 1,
+      "andouille sausage": 1,
+      "half yellow onion": 1,
+      "red bell pepper": 1,
+      "yellow bell pepper": 1,
+      "garlic": 1,
+      "creole seasoning": 1,
+      "dried thyme": 1,
+      "smoked paprika": 1,
+      "brown sugar": 1,
+      "old bay seasoning": 1,
+      "salt": 1,
+      "black pepper": 1,
+      "half can of crushed tomatoes": 1,
+      "can of low sodium chicken broth": 1,
+      "worcestershire sauce": 1,
+      "bottle of heavy cream": 1,
+      "grated parmesan": 1
+    },
+    "approximate cost": 5.00,
+    "serving size": 4
   }
 }
