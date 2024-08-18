@@ -1,26 +1,38 @@
 #IMPORTS
-from UI_Helper import print_header, print_commands
 from grocery_list import GroceryList
 
 #VARIABLES
+HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'exit']
 grocery_list = {}
 exit_program = False
 grocery_list = GroceryList()
 
-#TODO: Add Ingredients
-
 #TODO: Import Recipe
 
-#TODO: Order Ingredients
-
 #TODO: Make Recipe OO
+
+
+def print_header():
+    print('\n')
+    print('*********************************')
+    print(f'****{HEADER}****')
+    print('*********************************')
+    print('\n')
+
+
+def print_commands():
+    command_list = '|'
+    for command in COMMANDS:
+        command_list += command + '|'
+    print(command_list)
+
 
 print_header()
 
 #Main Loop
 while not exit_program:
-    print_commands(COMMANDS)
+    print_commands()
     match input('>> '):
         case 'create list':
             grocery_list.add_recipes()
