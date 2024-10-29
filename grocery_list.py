@@ -48,7 +48,7 @@ class GroceryList:
             print('Which item would you like to add?')
             item_to_add = input('>> ')
             print('How many would you like to add?')
-            quantity_to_add = int((input('>> ')))
+            quantity_to_add = int(input('>> '))
             item = additions[int(item_to_add) - 1]
             if item_to_add in self.items.keys():
                 self.items[item] += quantity_to_add
