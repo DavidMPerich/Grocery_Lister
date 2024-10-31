@@ -47,6 +47,9 @@ def add_recipe():
             recipe = Recipe()
             recipe.add_name()
             recipe.add_ingredients()
+            recipe.add_cost()
+            recipe.add_serving_size()
+            recipe.save_recipe()
         case _:
             print('sorry that is not an option')
 
