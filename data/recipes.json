@@ -1,65 +1,21 @@
 {
-    "Cool Ranch Chicken Tacos": {
-        "ingredients": {
-            "package of chicken breasts": 1,
-            "olive oil": 1,
-            "red wine vinegar": 1,
-            "taco seasoning packet": 1,
-            "ranch seasoning packet": 1,
-            "package of flour tortillas": 1,
-            "bag of shredded lettuce": 1,
-            "jar of salsa": 1
-        },
-        "approximate cost": 4.75,
-        "serving size": 6
-    },
-    "Sausage Orzo": {
-        "ingredients": {
-            "mild italian chicken sausage": 1,
-            "half yellow onion": 1,
-            "frozen corn": 1,
-            "dry orzo": 1,
-            "can of low sodium chicken broth": 2,
-            "package of baby spinach": 1,
-            "grated parmesan": 1,
-            "black pepper": 1
-        },
-        "approximate cost": 6.25,
-        "serving size": 4
-    },
-    "Cajun Pasta": {
-        "ingredients": {
-            "half box of farfalle": 1,
-            "half pound of shrimp": 1,
-            "andouille sausage": 1,
-            "half yellow onion": 1,
-            "red bell pepper": 1,
-            "yellow bell pepper": 1,
-            "garlic": 1,
-            "creole seasoning": 1,
-            "dried thyme": 1,
-            "smoked paprika": 1,
-            "brown sugar": 1,
-            "old bay seasoning": 1,
-            "salt": 1,
-            "black pepper": 1,
-            "half can of crushed tomatoes": 1,
-            "can of low sodium chicken broth": 1,
-            "worcestershire sauce": 1,
-            "bottle of heavy cream": 1,
-            "grated parmesan": 1
-        },
-        "approximate cost": 5.0,
-        "serving size": 4
-    },
     "Turkey Thing": {
         "ingredients": {
             "turkey": 1,
-            "peas": 1,
-            "carrots": 1,
-            "gravy": 1
+            "corn": 3,
+            "tomato": 2
         },
+        "approximate cost": 9.0,
+        "serving size": 4
+    },
+    "Apple Fritters": {
+        "ingredients": {},
         "approximate cost": 9.25,
         "serving size": 4
+    },
+    "Peach Pie": {
+        "ingredients": {},
+        "approximate cost": 8.15,
+        "serving size": 2
     }
 }

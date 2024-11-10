@@ -1,10 +1,11 @@
 #IMPORTS
 from grocery_list import GroceryList
 from recipe import Recipe
+import json
 
 #VARIABLES
 HEADER = 'Welcome To Grocery Lister'
-COMMANDS = ['create list', 'add recipe', 'exit']
+COMMANDS = ['create list', 'add recipe', 'test', 'exit']
 OPTIONS = ['import', 'manual']
 grocery_list = {}
 exit_program = False
@@ -54,6 +55,10 @@ def add_recipe():
             print('sorry that is not an option')
 
 
+def test():
+    pass
+
+
 print_header()
 
 #Main Loop
@@ -69,6 +74,8 @@ while not exit_program:
             exit_program = True
         case 'add recipe':
             add_recipe()
+        case 'test':
+            test()
         case 'exit':
             exit_program = True
         case _:

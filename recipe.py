@@ -1,4 +1,7 @@
 import json
+from config.config_service import ConfigService
+
+cs = ConfigService()
 
 
 class Recipe:
@@ -13,16 +16,20 @@ class Recipe:
         self.name = input('>> ').title()
 
     def add_ingredients(self):
-        response = 'y'
+        with open('config/category_lookup.json', 'r') as data_file:
+            ingredients = json.load(data_file)
 
-        while response == 'y':
-            print('Which ingredient would you like to add?')
-            ingredient_to_add = input('>> ').lower()
-            print('How many would you like to add?')
-            quantity_to_add = int(input('>> '))
-            self.ingredients[ingredient_to_add] = quantity_to_add
-            print('Would you like to add any more ingredients? (y/n)')
-            response = input('>> ')
+        print('What are the ingredients? (Example: white onion - 1)')
+        response = input('>> ')
+
+        ingredient = response.split(' - ')[0]
+        quantity = response.split(' - ')[1]
+
+        if ingredient not in ingredients:
+            category = cs.get_category()
+            ConfigService.add_category(self, category, ingredient)
+
+        
 
     def add_cost(self):
         print('How much does this recipe cost approximately?')
