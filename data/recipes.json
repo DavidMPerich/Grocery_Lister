@@ -14,8 +14,11 @@
         "serving size": 4
     },
     "Peach Pie": {
-        "ingredients": {},
-        "approximate cost": 8.15,
-        "serving size": 2
+        "ingredients": {
+            "peach": 3,
+            "pie crust": 1
+        },
+        "approximate cost": 2.0,
+        "serving size": 5
     }
 }

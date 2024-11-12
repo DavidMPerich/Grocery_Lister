@@ -66,10 +66,16 @@ class GroceryList:
         while response == 'y':
             print('Which item would you like to remove?')
             item_to_remove = input('>> ')
+
+            try:
+                item = list(self.items.keys())[int(item_to_remove) - 1]
+            except IndexError:
+                print('That item is not on the list')
+                continue
+
             print('How many would you like to remove?')
             quantity_to_remove = int((input('>> ')))
-            # TODO: Make sure item is in the list
-            item = list(self.items.keys())[int(item_to_remove) - 1]
+
             if self.items[item] == quantity_to_remove:
                 self.items.pop(item)
             elif self.items[item] > quantity_to_remove:

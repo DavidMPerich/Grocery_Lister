@@ -3,6 +3,8 @@ import json
 
 class ConfigService:
 
+    #TODO: Get List Of Existing Ingredients
+
     def get_category(self):
         with open('config/layout.json', 'r') as data_file:
             layout = json.load(data_file)
@@ -10,6 +12,7 @@ class ConfigService:
         categories = []
         index = 1
 
+        #TODO: Make Easier To Select Category
         print('Which category does this belong in?')
         for aisle in layout:
             categories += layout[aisle]

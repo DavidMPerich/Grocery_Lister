@@ -22,14 +22,18 @@ class Recipe:
         print('What are the ingredients? (Example: white onion - 1)')
         response = input('>> ')
 
-        ingredient = response.split(' - ')[0]
-        quantity = response.split(' - ')[1]
+        while response:
+            #TODO: Error Handling For Correct Format
+            ingredient = response.split(' - ')[0]
+            quantity = int(response.split(' - ')[1])
 
-        if ingredient not in ingredients:
-            category = cs.get_category()
-            ConfigService.add_category(self, category, ingredient)
+            if ingredient not in ingredients:
+                category = cs.get_category()
+                ConfigService.add_category(self, category, ingredient)
 
-        
+            self.ingredients[ingredient] = quantity
+            response = input('>> ')
+
 
     def add_cost(self):
         print('How much does this recipe cost approximately?')
