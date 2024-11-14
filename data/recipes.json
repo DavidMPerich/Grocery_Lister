@@ -20,5 +20,13 @@
         },
         "approximate cost": 2.0,
         "serving size": 5
+    },
+    "Fried Chicken": {
+        "ingredients": {
+            "whole chicken": 1,
+            "olive oil": 1
+        },
+        "approximate cost": 4.25,
+        "serving size": 4
     }
 }

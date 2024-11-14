@@ -4,6 +4,7 @@ from recipe import Recipe
 import json
 
 #VARIABLES
+TEST_MODE = True
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
 OPTIONS = ['import', 'manual']
@@ -56,9 +57,18 @@ def add_recipe():
 
 
 def test():
-    pass
+    with open('config/category_lookup.json') as data_file:
+        ingredients = list(json.load(data_file).keys())
+    ingredients = sorted(ingredients)
+    index = 1
+    for ingredient in ingredients:
+        print(f'{index}. {ingredient}')
+        index += 1
 
 
+if TEST_MODE:
+    test()
+    exit()
 
 print_header()
 

@@ -29,7 +29,7 @@ class Recipe:
 
             if ingredient not in ingredients:
                 category = cs.get_category()
-                ConfigService.add_category(self, category, ingredient)
+                cs.add_category(category, ingredient)
 
             self.ingredients[ingredient] = quantity
             response = input('>> ')

@@ -33,3 +33,11 @@ class ConfigService:
 
         with open('config/category_lookup.json', 'w') as data_file:
             json.dump(cat_lookup, data_file, indent=4)
+
+    def get_items(self):
+        with open('config/category_lookup.json') as data_file:
+            ingredients = list(json.load(data_file).keys())
+        ingredients = sorted(ingredients)
+        index = 1
+        for ingredient in ingredients:
+            print(f'{index}. {ingredient}')
