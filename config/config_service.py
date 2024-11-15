@@ -4,6 +4,7 @@ import json
 class ConfigService:
 
     #TODO: Get List Of Existing Ingredients
+    #TODO: Remove Any Unnecessary IO
 
     def get_category(self):
         with open('config/layout.json', 'r') as data_file:
@@ -36,8 +37,5 @@ class ConfigService:
 
     def get_items(self):
         with open('config/category_lookup.json') as data_file:
-            ingredients = list(json.load(data_file).keys())
-        ingredients = sorted(ingredients)
-        index = 1
-        for ingredient in ingredients:
-            print(f'{index}. {ingredient}')
+            ingredients = sorted(list(json.load(data_file).keys()))
+        return ingredients

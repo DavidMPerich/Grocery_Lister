@@ -1,7 +1,9 @@
 #IMPORTS
 from grocery_list import GroceryList
 from recipe import Recipe
-import json
+from config.config_service import ConfigService
+
+cs = ConfigService()
 
 #VARIABLES
 TEST_MODE = True
@@ -57,13 +59,29 @@ def add_recipe():
 
 
 def test():
-    with open('config/category_lookup.json') as data_file:
-        ingredients = list(json.load(data_file).keys())
-    ingredients = sorted(ingredients)
-    index = 1
-    for ingredient in ingredients:
-        print(f'{index}. {ingredient}')
-        index += 1
+    print('Would you like to add any items? (y/n)')
+    match input('>> '):
+        case 'y':
+            pass
+        case 'n':
+            return
+        case _:
+            print('sorry that is not an option')
+            test()
+
+    items = cs.get_items()
+    for item in items:
+        print(item)
+
+    print('What items do you want to add? (Example: white onion - 1)')
+    response = input('>> ')
+
+    while response:
+        item = response.split(' - ')[0]
+        quantity = int(response.split(' - ')[1])
+
+
+
 
 
 if TEST_MODE:

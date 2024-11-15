@@ -1,5 +1,7 @@
 import json
+from config.config_service import ConfigService
 
+cs = ConfigService()
 
 class GroceryList:
     def __init__(self):
@@ -33,27 +35,32 @@ class GroceryList:
         self.print_items()
 
     def add_items(self):
-        print("Would you like to add any items? (y/n)")
+        print('Would you like to add any items? (y/n)')
+        match input('>> '):
+            case 'y':
+                pass
+            case 'n':
+                return
+            case _:
+                print('sorry that is not an option')
+                self.add_items()
+
+        items = cs.get_items()
+        for item in items:
+            print(item)
+
+        print('What items do you want to add? (Example: white onion - 1)')
         response = input('>> ')
 
-        with open('data/additions.txt', 'r') as data_file:
-            additions = data_file.read().splitlines()
+        while response:
+            item = response.split(' - ')[0]
+            quantity = int(response.split(' - ')[1])
 
-        index = 1
-        for item in additions:
-            print(f'{index}. {item}')
-            index += 1
-
-        while response == 'y':
-            print('Which item would you like to add?')
-            item_to_add = input('>> ')
-            print('How many would you like to add?')
-            quantity_to_add = int(input('>> '))
-            item = additions[int(item_to_add) - 1]
-            if item_to_add in self.items.keys():
-                self.items[item] += quantity_to_add
+            #TODO: Continue Here
+            if item in self.items.keys():
+                self.items[item] += quantity
             else:
-                self.items[item] = quantity_to_add
+                self.items[item] = quantity
             print('Would you like to add any more items? (y/n)')
             response = input('>> ')
 
