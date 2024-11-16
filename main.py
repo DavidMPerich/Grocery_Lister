@@ -2,14 +2,13 @@
 from grocery_list import GroceryList
 from recipe import Recipe
 from config.config_service import ConfigService
+from data.data_service import DataService
 
 
 #VARIABLES
-TEST_MODE = False
+TEST_MODE = True
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
-grocery_list = {}
-cs = ConfigService()
 exit_program = False
 
 
@@ -20,6 +19,8 @@ exit_program = False
 #TODO: Add Website Link to Recipe
 
 #TODO: Add Price to Ingredients to Determine Cost
+
+#TODO: Verify Prompt Comes After List
 
 def print_header():
     print('\n')
@@ -36,9 +37,42 @@ def print_commands():
     print(command_list)
 
 
+def create_list():
+    grocery_list = GroceryList()
+
+    index = 1
+    available_recipes = DataService.get_recipes()
+    ignore_cases = ConfigService.get_ignore_cases()
+
+    for recipe in available_recipes:
+        print(f'{index}. {recipe}')
+        index += 1
+
+    print('\nPlease select which recipes to add to the grocery list:')
+    selected_recipes = input('>> ').split(',')
+
+    for index in selected_recipes:
+        recipe = available_recipes[int(index) - 1]
+        ingredients = DataService.get_ingredients(recipe)
+        for ingredient, quantity in ingredients.items():
+            if ingredient in ignore_cases:
+                pass
+            elif ingredient in grocery_list.items:
+                grocery_list.items[ingredient] += quantity
+            else:
+                grocery_list.items[ingredient] = quantity
+
+    grocery_list.print_items()
+
+    #TODO: Continue Here
+    grocery_list.remove_items()
+    grocery_list.add_items()
+    grocery_list.order_items()
+
+
 def add_recipe():
     recipe = Recipe()
-    items = cs.get_items()
+    items = ConfigService.get_items()
 
     print('What is the name of the recipe?')
     recipe.name = input('>> ').title()
@@ -55,7 +89,7 @@ def add_recipe():
             quantity = int(input('>> '))
 
         if ingredient not in items:
-            cs.add_category(cs.get_category(), ingredient)
+            ConfigService.add_category(ConfigService.get_category(), ingredient)
 
         recipe.ingredients[ingredient] = quantity
         response = input('>> ')
@@ -84,12 +118,7 @@ while not exit_program:
     print_commands()
     match input('>> '):
         case 'create list':
-            grocery_list = GroceryList()
-            grocery_list.add_recipes()
-            grocery_list.remove_items()
-            grocery_list.add_items()
-            grocery_list.order_items()
-            exit_program = True
+            create_list()
         case 'add recipe':
             add_recipe()
         case 'test':

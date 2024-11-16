@@ -8,33 +8,6 @@ class GroceryList:
     def __init__(self):
         self.items = {}
 
-    def add_recipes(self):
-        with open('data/recipes.json', 'r') as data_file:
-            recipes = json.load(data_file)
-
-        with open('config/ignore.txt', 'r') as data_file:
-            ignore = data_file.read().splitlines()
-
-        print("Please select which recipes to add to the grocery list:\n")
-        index = 1
-        for recipe in recipes.keys():
-            print(
-                f'{index}. {recipe} (serving size: {recipes[recipe]['serving size']}) - ${recipes[recipe]['approximate cost']}/meal')
-            index += 1
-
-        chosen_recipes = input('>> ').split(',')
-        for index in chosen_recipes:
-            recipe = list(recipes.keys())[int(index) - 1]
-            for ingredient, quantity, in recipes[recipe]["ingredients"].items():
-                if ingredient in ignore:
-                    pass
-                elif ingredient in self.items:
-                    self.items[ingredient] += quantity
-                else:
-                    self.items[ingredient] = quantity
-
-        self.print_items()
-
     def add_items(self):
         print('Would you like to add any items? (y/n)')
         match input('>> '):

@@ -5,7 +5,8 @@ class ConfigService:
 
     #TODO: Remove Any Unnecessary IO
 
-    def get_category(self):
+    @staticmethod
+    def get_category():
         with open('config/layout.json', 'r') as data_file:
             layout = json.load(data_file)
 
@@ -25,7 +26,8 @@ class ConfigService:
         response = int(input('>> '))
         return categories[response - 1]
 
-    def add_category(self, category, ingredient):
+    @staticmethod
+    def add_category(category, ingredient):
         with open('config/category_lookup.json', 'r') as data_file:
             cat_lookup = json.load(data_file)
 
@@ -34,7 +36,14 @@ class ConfigService:
         with open('config/category_lookup.json', 'w') as data_file:
             json.dump(cat_lookup, data_file, indent=4)
 
-    def get_items(self):
+    @staticmethod
+    def get_items():
         with open('config/category_lookup.json') as data_file:
             ingredients = sorted(list(json.load(data_file).keys()))
         return ingredients
+
+    @staticmethod
+    def get_ignore_cases():
+        with open('config/ignore.txt', 'r') as data_file:
+            ignore_cases = data_file.read().splitlines()
+        return ignore_cases
