@@ -3,7 +3,6 @@ import json
 
 class ConfigService:
 
-    #TODO: Get List Of Existing Ingredients
     #TODO: Remove Any Unnecessary IO
 
     def get_category(self):

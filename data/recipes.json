@@ -1,32 +1,37 @@
 {
-    "Turkey Thing": {
+    "Apple Pie": {
         "ingredients": {
-            "turkey": 1,
-            "corn": 3,
-            "tomato": 2
-        },
-        "approximate cost": 9.0,
-        "serving size": 4
-    },
-    "Apple Fritters": {
-        "ingredients": {},
-        "approximate cost": 9.25,
-        "serving size": 4
-    },
-    "Peach Pie": {
-        "ingredients": {
-            "peach": 3,
+            "apple": 5,
             "pie crust": 1
         },
-        "approximate cost": 2.0,
-        "serving size": 5
+        "approximate cost": 12.0,
+        "serving size": 4
     },
-    "Fried Chicken": {
+    "Turkey Sandwhich": {
+        "ingredients": {
+            "turkey": 1,
+            "whole wheat bread": 1,
+            "cranberry sauce": 1
+        },
+        "approximate cost": 27.0,
+        "serving size": 6
+    },
+    "Peach Cobbler": {
+        "ingredients": {
+            "peach": 3,
+            "pie crust": 1,
+            "vanilla ice cream": 1
+        },
+        "approximate cost": 9.25,
+        "serving size": 2
+    },
+    "Chicken Salad": {
         "ingredients": {
             "whole chicken": 1,
-            "olive oil": 1
+            "mayo": 1,
+            "apple": 2
         },
-        "approximate cost": 4.25,
-        "serving size": 4
+        "approximate cost": 6.15,
+        "serving size": 2
     }
 }

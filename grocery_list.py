@@ -3,6 +3,7 @@ from config.config_service import ConfigService
 
 cs = ConfigService()
 
+
 class GroceryList:
     def __init__(self):
         self.items = {}
@@ -56,12 +57,15 @@ class GroceryList:
             item = response.split(' - ')[0]
             quantity = int(response.split(' - ')[1])
 
-            #TODO: Continue Here
+            if item not in items:
+                category = cs.get_category()
+                cs.add_category(category, item)
+
             if item in self.items.keys():
                 self.items[item] += quantity
             else:
                 self.items[item] = quantity
-            print('Would you like to add any more items? (y/n)')
+
             response = input('>> ')
 
         self.print_items()

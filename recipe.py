@@ -11,38 +11,6 @@ class Recipe:
         self.cost = 0.00
         self.serving_size = 0
 
-    def add_name(self):
-        print('What is the name of the recipe?')
-        self.name = input('>> ').title()
-
-    def add_ingredients(self):
-        with open('config/category_lookup.json', 'r') as data_file:
-            ingredients = json.load(data_file)
-
-        print('What are the ingredients? (Example: white onion - 1)')
-        response = input('>> ')
-
-        while response:
-            #TODO: Error Handling For Correct Format
-            ingredient = response.split(' - ')[0]
-            quantity = int(response.split(' - ')[1])
-
-            if ingredient not in ingredients:
-                category = cs.get_category()
-                cs.add_category(category, ingredient)
-
-            self.ingredients[ingredient] = quantity
-            response = input('>> ')
-
-
-    def add_cost(self):
-        print('How much does this recipe cost approximately?')
-        self.cost = float(input('>> '))
-
-    def add_serving_size(self):
-        print('How many does this recipe serve?')
-        self.serving_size = int(input('>> '))
-
     def save_recipe(self):
         new_recipe = {
             self.name: {

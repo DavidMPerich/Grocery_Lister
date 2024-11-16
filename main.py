@@ -3,21 +3,23 @@ from grocery_list import GroceryList
 from recipe import Recipe
 from config.config_service import ConfigService
 
-cs = ConfigService()
 
 #VARIABLES
-TEST_MODE = True
+TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
-OPTIONS = ['import', 'manual']
 grocery_list = {}
+cs = ConfigService()
 exit_program = False
 
 
-#TODO: Import Recipe
-
 #TODO: Search Recipe By Ingredient
 
+#TODO: Categorize Recipes
+
+#TODO: Add Website Link to Recipe
+
+#TODO: Add Price to Ingredients to Determine Cost
 
 def print_header():
     print('\n')
@@ -34,54 +36,41 @@ def print_commands():
     print(command_list)
 
 
-def print_options():
-    options_list = "|"
-    for option in OPTIONS:
-        options_list += option + '|'
-    print(options_list)
-
-
 def add_recipe():
-    print("\n\nWould you like to import a recipe or manually add a recipe?")
-    print_options()
-    match input('>> '):
-        case 'import':
-            pass
-        case 'manual':
-            recipe = Recipe()
-            recipe.add_name()
-            recipe.add_ingredients()
-            recipe.add_cost()
-            recipe.add_serving_size()
-            recipe.save_recipe()
-        case _:
-            print('sorry that is not an option')
+    recipe = Recipe()
+    items = cs.get_items()
+
+    print('What is the name of the recipe?')
+    recipe.name = input('>> ').title()
+
+    print('What are the ingredients?')
+    response = input('>> ')
+    while response:
+        segments = response.split(' - ')
+        ingredient = segments[0]
+        if len(segments) > 1:
+            quantity = int(segments[1])
+        else:
+            print('How many?')
+            quantity = int(input('>> '))
+
+        if ingredient not in items:
+            cs.add_category(cs.get_category(), ingredient)
+
+        recipe.ingredients[ingredient] = quantity
+        response = input('>> ')
+
+    print('How much does this recipe cost?')
+    recipe.cost = float(input('>> '))
+
+    print('How many does this recipe serve?')
+    recipe.serving_size = int(input('>> '))
+
+    recipe.save_recipe()
 
 
 def test():
-    print('Would you like to add any items? (y/n)')
-    match input('>> '):
-        case 'y':
-            pass
-        case 'n':
-            return
-        case _:
-            print('sorry that is not an option')
-            test()
-
-    items = cs.get_items()
-    for item in items:
-        print(item)
-
-    print('What items do you want to add? (Example: white onion - 1)')
-    response = input('>> ')
-
-    while response:
-        item = response.split(' - ')[0]
-        quantity = int(response.split(' - ')[1])
-
-
-
+    pass
 
 
 if TEST_MODE:
