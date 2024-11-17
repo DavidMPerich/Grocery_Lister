@@ -6,7 +6,7 @@ from data.data_service import DataService
 
 
 #VARIABLES
-TEST_MODE = True
+TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
 exit_program = False
@@ -21,6 +21,12 @@ exit_program = False
 #TODO: Add Price to Ingredients to Determine Cost
 
 #TODO: Verify Prompt Comes After List
+
+#TODO: Verify Single v Double Quotes
+
+#TODO: Print v Text
+
+#TODO: Add/Remove Items Convert from Int to Float
 
 def print_header():
     print('\n')
@@ -64,12 +70,84 @@ def create_list():
 
     grocery_list.print_items()
 
-    #TODO: Continue Here
-    grocery_list.remove_items()
-    grocery_list.add_items()
-    grocery_list.order_items()
+    print('Would you like to remove any items? (y/n)')
+    match input('>> '):
+        case 'y':
+            pass
+        case 'n':
+            return
+        case _:
+            # TODO: Handle This Better
+            print('Sorry, that is not a valid response')
+            return
 
+    print('Which items would you like to remove?')
+    response = input('>> ')
 
+    while response:
+        segments = response.split(' - ')
+        item = segments[0]
+        while item not in grocery_list.items:
+            print('Sorry, that item is not on the list')
+            item = input('>> ').split(' - ')[0]
+
+        if len(segments) > 1:
+            quantity = int(segments[1])
+        else:
+            print('How many?')
+            quantity = int(input('>> '))
+
+        if grocery_list.items[item] == quantity:
+            grocery_list.items.pop(item)
+        elif grocery_list.items[item] > quantity:
+            grocery_list.items[item] -= quantity
+        else:
+            print('You do not have that many to remove')
+
+        response = input('>> ')
+
+    grocery_list.print_items()
+
+    print('Would you like to add any items? (y/n)')
+    match input('>> '):
+        case 'y':
+            pass
+        case 'n':
+            return
+        case _:
+            #TODO: Handle This Better
+            print('Sorry, that is not a valid response')
+            return
+
+    items = ConfigService.get_items()
+    for item in items:
+        print(item)
+
+    print('Which items do you want to add?')
+    response = input('>> ')
+
+    while response:
+        segments = response.split(' - ')
+        item = segments[0]
+        if len(segments) > 1:
+            quantity = int(segments[1])
+        else:
+            print('How many?')
+            quantity = int(input('>> '))
+
+        if item not in items:
+            ConfigService.add_category(ConfigService.get_category(), item)
+
+        if item in grocery_list.items.keys():
+            grocery_list.items[item] += quantity
+        else:
+            grocery_list.items[item] = quantity
+
+        response.input('>> ')
+
+    grocery_list.print_items()
+
+    
 def add_recipe():
     recipe = Recipe()
     items = ConfigService.get_items()
@@ -126,4 +204,4 @@ while not exit_program:
         case 'exit':
             exit_program = True
         case _:
-            print("sorry that is not a command")
+            print("Sorry, that is not a command")
