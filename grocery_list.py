@@ -9,23 +9,15 @@ class GroceryList:
         self.items = {}
 
     def order_items(self):
-        with open('config/layout.json', 'r') as data_file:
-            layout = json.load(data_file)
+        ordered_list = {}
+        sections = ConfigService.get_sections()
 
-        with open('config/category_lookup.json', 'r') as data_file:
-            categories = json.load(data_file)
+        for section in sections:
+            for item, quantity in self.items.items():
+                if ConfigService.get_section(item) == section:
+                    ordered_list[item] = quantity
 
-        index = 1
-        for aisle in list(layout.keys()):
-            display_aisle = True
-            for section in layout[aisle]:
-                for item, quantity in self.items.items():
-                    if categories[item] == section:
-                        if display_aisle:
-                            print(aisle.upper())
-                            display_aisle = False
-                        print(f'{index}. {item} x{quantity}')
-                        index += 1
+        self.items = ordered_list
 
     def print_items(self):
         print("______________")

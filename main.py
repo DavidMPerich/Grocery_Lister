@@ -136,18 +136,20 @@ def create_list():
             quantity = int(input('>> '))
 
         if item not in items:
-            ConfigService.add_category(ConfigService.get_category(), item)
+            ConfigService.add_category(ConfigService.select_category(), item)
 
         if item in grocery_list.items.keys():
             grocery_list.items[item] += quantity
         else:
             grocery_list.items[item] = quantity
 
-        response.input('>> ')
+        response = input('>> ')
+
+    grocery_list.order_items()
 
     grocery_list.print_items()
 
-    
+
 def add_recipe():
     recipe = Recipe()
     items = ConfigService.get_items()
@@ -167,7 +169,7 @@ def add_recipe():
             quantity = int(input('>> '))
 
         if ingredient not in items:
-            ConfigService.add_category(ConfigService.get_category(), ingredient)
+            ConfigService.add_category(ConfigService.select_category(), ingredient)
 
         recipe.ingredients[ingredient] = quantity
         response = input('>> ')
@@ -183,7 +185,6 @@ def add_recipe():
 
 def test():
     pass
-
 
 if TEST_MODE:
     test()
