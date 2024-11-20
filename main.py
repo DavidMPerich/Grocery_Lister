@@ -10,6 +10,7 @@ TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
 exit_program = False
+VALID_RESPONSES = ['y', 'n']
 
 
 #TODO: Search Recipe By Ingredient
@@ -34,6 +35,13 @@ def print_header():
     print(f'****{HEADER}****')
     print('*********************************')
     print('\n')
+
+
+def validate_response(response):
+    while response not in VALID_RESPONSES:
+        print('Sorry, that is not a valid response')
+        response = input('>> ')
+    return response
 
 
 def print_commands():
@@ -71,82 +79,67 @@ def create_list():
     grocery_list.print_items()
 
     print('Would you like to remove any items? (y/n)')
-    match input('>> '):
-        case 'y':
-            pass
-        case 'n':
-            return
-        case _:
-            # TODO: Handle This Better
-            print('Sorry, that is not a valid response')
-            return
+    response = validate_response(input('>> '))
 
-    print('Which items would you like to remove?')
-    response = input('>> ')
-
-    while response:
-        segments = response.split(' - ')
-        item = segments[0]
-        while item not in grocery_list.items:
-            print('Sorry, that item is not on the list')
-            item = input('>> ').split(' - ')[0]
-
-        if len(segments) > 1:
-            quantity = int(segments[1])
-        else:
-            print('How many?')
-            quantity = int(input('>> '))
-
-        if grocery_list.items[item] == quantity:
-            grocery_list.items.pop(item)
-        elif grocery_list.items[item] > quantity:
-            grocery_list.items[item] -= quantity
-        else:
-            print('You do not have that many to remove')
-
+    if response == 'y':
+        print('Which items would you like to remove?')
         response = input('>> ')
 
-    grocery_list.print_items()
+        while response:
+            segments = response.split(' - ')
+            item = segments[0]
+            while item not in grocery_list.items:
+                print('Sorry, that item is not on the list')
+                item = input('>> ').split(' - ')[0]
+
+            if len(segments) > 1:
+                quantity = int(segments[1])
+            else:
+                print('How many?')
+                quantity = int(input('>> '))
+
+            if grocery_list.items[item] == quantity:
+                grocery_list.items.pop(item)
+            elif grocery_list.items[item] > quantity:
+                grocery_list.items[item] -= quantity
+            else:
+                print('You do not have that many to remove')
+
+            response = input('>> ')
+
+        grocery_list.print_items()
 
     print('Would you like to add any items? (y/n)')
-    match input('>> '):
-        case 'y':
-            pass
-        case 'n':
-            return
-        case _:
-            #TODO: Handle This Better
-            print('Sorry, that is not a valid response')
-            return
+    response = validate_response(input('>> '))
 
-    items = ConfigService.get_items()
-    for item in items:
-        print(item)
+    if response == 'y':
+        items = ConfigService.get_items()
+        for item in items:
+            print(item)
 
-    print('Which items do you want to add?')
-    response = input('>> ')
-
-    while response:
-        segments = response.split(' - ')
-        item = segments[0]
-        if len(segments) > 1:
-            quantity = int(segments[1])
-        else:
-            print('How many?')
-            quantity = int(input('>> '))
-
-        if item not in items:
-            ConfigService.add_category(ConfigService.select_category(), item)
-
-        if item in grocery_list.items.keys():
-            grocery_list.items[item] += quantity
-        else:
-            grocery_list.items[item] = quantity
-
+        print('Which items do you want to add?')
         response = input('>> ')
 
-    grocery_list.order_items()
+        while response:
+            segments = response.split(' - ')
+            item = segments[0]
+            if len(segments) > 1:
+                quantity = int(segments[1])
+            else:
+                print('How many?')
+                quantity = int(input('>> '))
 
+            if item not in items:
+                ConfigService.add_category(ConfigService.select_category(), item)
+
+            if item in grocery_list.items.keys():
+                grocery_list.items[item] += quantity
+            else:
+                grocery_list.items[item] = quantity
+
+            response = input('>> ')
+    
+    grocery_list.order_items()
     grocery_list.print_items()
 
 
