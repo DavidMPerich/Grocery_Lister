@@ -113,35 +113,28 @@ def create_list():
     grocery_list.print_items()
 
 
+#TODO: Refactor
 def add_recipe():
     recipe = Recipe()
     items = ConfigService.get_items()
 
     print('What is the name of the recipe?')
-    recipe.name = input('>> ').title()
+    name = input('>> ').title()
+    recipe.set_name(name)
 
     print('What are the ingredients?')
     response = input('>> ')
     while response:
-        segments = response.split(' - ')
-        ingredient = segments[0]
-        if len(segments) > 1:
-            quantity = int(segments[1])
-        else:
-            print('How many?')
-            quantity = int(input('>> '))
-
-        if ingredient not in items:
-            ConfigService.add_category(ConfigService.select_category(), ingredient)
-
-        recipe.ingredients[ingredient] = quantity
+        recipe.add_ingredients(response)
         response = input('>> ')
 
     print('How much does this recipe cost?')
-    recipe.cost = float(input('>> '))
+    cost = float(input('>> '))
+    recipe.set_cost(cost)
 
     print('How many does this recipe serve?')
-    recipe.serving_size = int(input('>> '))
+    serving_size = int(input('>> '))
+    recipe.set_serving_size(serving_size)
 
     recipe.save_recipe()
 

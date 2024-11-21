@@ -33,5 +33,13 @@
         },
         "approximate cost": 6.15,
         "serving size": 2
+    },
+    "Sundae": {
+        "ingredients": {
+            "vanilla ice cream": 1,
+            "chocolate syrup": 1
+        },
+        "approximate cost": 3.33,
+        "serving size": 1
     }
 }
