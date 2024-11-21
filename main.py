@@ -44,6 +44,13 @@ def validate_response(response):
     return response
 
 
+def validate_recipe_selection(index, recipe_list):
+    while (index - 1) < 0 or index > len(recipe_list):
+        print(f'{index} is not an option. Please choose another')
+        index = int(input('>> '))
+    return index
+
+
 def print_commands():
     command_list = '|'
     for command in COMMANDS:
@@ -56,28 +63,21 @@ def create_list():
 
     index = 1
     available_recipes = DataService.get_recipes()
-    ignore_cases = ConfigService.get_ignore_cases()
 
+    # ADD RECIPES
     for recipe in available_recipes:
         print(f'{index}. {recipe}')
         index += 1
-
     print('\nPlease select which recipes to add to the grocery list:')
-    selected_recipes = input('>> ').split(',')
+    selected_recipes = [int(x) for x in input('>> ').split(',')]
 
     for index in selected_recipes:
-        recipe = available_recipes[int(index) - 1]
-        ingredients = DataService.get_ingredients(recipe)
-        for ingredient, quantity in ingredients.items():
-            if ingredient in ignore_cases:
-                pass
-            elif ingredient in grocery_list.items:
-                grocery_list.items[ingredient] += quantity
-            else:
-                grocery_list.items[ingredient] = quantity
+        index = validate_recipe_selection(index, available_recipes)
+        grocery_list.add_recipe_ingredients(index)
 
     grocery_list.print_items()
 
+    #REMOVE ITEMS
     print('Would you like to remove any items? (y/n)')
     response = validate_response(input('>> '))
 
@@ -86,59 +86,27 @@ def create_list():
         response = input('>> ')
 
         while response:
-            segments = response.split(' - ')
-            item = segments[0]
-            while item not in grocery_list.items:
-                print('Sorry, that item is not on the list')
-                item = input('>> ').split(' - ')[0]
-
-            if len(segments) > 1:
-                quantity = int(segments[1])
-            else:
-                print('How many?')
-                quantity = int(input('>> '))
-
-            if grocery_list.items[item] == quantity:
-                grocery_list.items.pop(item)
-            elif grocery_list.items[item] > quantity:
-                grocery_list.items[item] -= quantity
-            else:
-                print('You do not have that many to remove')
-
+            grocery_list.remove_item(response)
             response = input('>> ')
 
         grocery_list.print_items()
 
+    #ADD ITEMS
     print('Would you like to add any items? (y/n)')
     response = validate_response(input('>> '))
 
     if response == 'y':
-        items = ConfigService.get_items()
-        for item in items:
+        for item in ConfigService.get_items():
             print(item)
 
         print('Which items do you want to add?')
         response = input('>> ')
 
         while response:
-            segments = response.split(' - ')
-            item = segments[0]
-            if len(segments) > 1:
-                quantity = int(segments[1])
-            else:
-                print('How many?')
-                quantity = int(input('>> '))
-
-            if item not in items:
-                ConfigService.add_category(ConfigService.select_category(), item)
-
-            if item in grocery_list.items.keys():
-                grocery_list.items[item] += quantity
-            else:
-                grocery_list.items[item] = quantity
-
+            grocery_list.add_item(response)
             response = input('>> ')
-    
+
+    #ORDER LIST
     grocery_list.order_items()
     grocery_list.print_items()
 
@@ -178,6 +146,7 @@ def add_recipe():
 
 def test():
     pass
+
 
 if TEST_MODE:
     test()
