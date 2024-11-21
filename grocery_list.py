@@ -1,15 +1,14 @@
 import json
 from config.config_service import ConfigService
-from data.data_service import DataService
+
+#TODO: Refactor to remove ConfigService if possible
 
 
 class GroceryList:
     def __init__(self):
         self.items = {}
 
-    def add_recipe_ingredients(self, selected_recipe):
-        recipe = DataService.get_recipes()[selected_recipe - 1]
-        ingredients = DataService.get_ingredients(recipe)
+    def add_recipe_ingredients(self, ingredients):
         for ingredient, quantity in ingredients.items():
             if ingredient in ConfigService.get_ignore_cases():
                 pass

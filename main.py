@@ -73,7 +73,9 @@ def create_list():
 
     for index in selected_recipes:
         index = validate_recipe_selection(index, available_recipes)
-        grocery_list.add_recipe_ingredients(index)
+        selected_recipe = DataService.get_recipes()[index - 1]
+        ingredients = DataService.get_ingredients(selected_recipe)
+        grocery_list.add_recipe_ingredients(ingredients)
 
     grocery_list.print_items()
 
