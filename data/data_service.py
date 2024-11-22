@@ -13,4 +13,4 @@ class DataService:
     def get_ingredients(recipe):
         with open('data/recipes.json', 'r') as data_file:
             recipes = json.load(data_file)
-        return recipes[recipe]["ingredients"]
+        return recipes[recipe]['ingredients']

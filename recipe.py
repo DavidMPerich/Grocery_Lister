@@ -4,7 +4,7 @@ from config.config_service import ConfigService
 
 class Recipe:
     def __init__(self):
-        self.name = ""
+        self.name = ''
         self.ingredients = {}
         self.cost = 0.00
         self.serving_size = 0
@@ -27,9 +27,9 @@ class Recipe:
     def save_recipe(self):
         new_recipe = {
             self.name: {
-                "ingredients": self.ingredients,
-                "approximate cost": self.cost,
-                "serving size": self.serving_size
+                'ingredients': self.ingredients,
+                'approximate cost': self.cost,
+                'serving size': self.serving_size
             }
         }
 

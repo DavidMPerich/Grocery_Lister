@@ -1,16 +1,13 @@
-#IMPORTS
 from grocery_list import GroceryList
 from recipe import Recipe
 from config.config_service import ConfigService
 from data.data_service import DataService
 from validator import Validator
 
-#VARIABLES
 TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
 exit_program = False
-
 
 #TODO: Search Recipe By Ingredient
 
@@ -20,15 +17,8 @@ exit_program = False
 
 #TODO: Add Price to Ingredients to Determine Cost
 
-#TODO: Verify Prompt Comes After List
-
-#TODO: Verify Single v Double Quotes
-
 #TODO: Print v Text
 
-#TODO: Add/Remove Items Convert from Int to Float
-
-#TODO: Create Validator Service
 
 def print_header():
     print('\n')
@@ -51,7 +41,6 @@ def create_list():
     index = 1
     available_recipes = DataService.get_recipes()
 
-    # ADD RECIPES
     for recipe in available_recipes:
         print(f'{index}. {recipe}')
         index += 1
@@ -66,7 +55,6 @@ def create_list():
 
     grocery_list.print_items()
 
-    #REMOVE ITEMS
     print('Would you like to remove any items? (y/n)')
     response = Validator.yes_no(input('>> '))
 
@@ -81,7 +69,6 @@ def create_list():
 
         grocery_list.print_items()
 
-    #ADD ITEMS
     print('Would you like to add any items? (y/n)')
     response = Validator.yes_no(input('>> '))
 
@@ -97,7 +84,6 @@ def create_list():
             grocery_list.add_item(item, quantity)
             response = input('>> ')
 
-    #ORDER LIST
     grocery_list.order_items()
     grocery_list.print_items()
 
@@ -150,4 +136,4 @@ while not exit_program:
         case 'exit':
             exit_program = True
         case _:
-            print("Sorry, that is not a command")
+            print('Sorry, that is not a command')
