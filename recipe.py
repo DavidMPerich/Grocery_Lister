@@ -1,8 +1,6 @@
 import json
 from config.config_service import ConfigService
 
-cs = ConfigService()
-
 
 class Recipe:
     def __init__(self):

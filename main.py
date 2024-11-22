@@ -29,6 +29,8 @@ VALID_RESPONSES = ['y', 'n']
 
 #TODO: Add/Remove Items Convert from Int to Float
 
+#TODO: Create Validator Service
+
 def print_header():
     print('\n')
     print('*********************************')
@@ -51,13 +53,34 @@ def validate_recipe_selection(index, recipe_list):
     return index
 
 
+def validate_cost(response):
+    while True:
+        try:
+            cost = float(response)
+            return cost
+        except ValueError:
+            print(f'Please enter a valid price')
+            response = input('>> ')
+
+
+def validate_serving_size(response):
+    while True:
+        try:
+            serving_size = int(response)
+            return serving_size
+        except ValueError:
+            print(f'Please enter a valid number')
+            response = input('>> ')
+
+
 def validate_ingredient(response):
     segments = response.split(' - ')
 
     while True:
         try:
+            ingredient = segments[0]
             quantity = int(segments[1])
-            return segments[0], int(segments[1])
+            return ingredient, quantity
         except ValueError:
             print('Please enter a valid quantity')
             segments = input('>> ').split(' - ')
@@ -103,7 +126,8 @@ def create_list():
         response = input('>> ')
 
         while response:
-            grocery_list.remove_item(response)
+            (item, quantity) = validate_ingredient(response)
+            grocery_list.remove_item(item, quantity)
             response = input('>> ')
 
         grocery_list.print_items()
@@ -120,7 +144,8 @@ def create_list():
         response = input('>> ')
 
         while response:
-            grocery_list.add_item(response)
+            (item, quantity) = validate_ingredient(response)
+            grocery_list.add_item(item, quantity)
             response = input('>> ')
 
     #ORDER LIST
@@ -144,11 +169,11 @@ def add_recipe():
         response = input('>> ')
 
     print('How much does this recipe cost?')
-    cost = float(input('>> '))
+    cost = validate_cost(input('>> '))
     recipe.set_cost(cost)
 
     print('How many does this recipe serve?')
-    serving_size = int(input('>> '))
+    serving_size = validate_serving_size(input('>> '))
     recipe.set_serving_size(serving_size)
 
     recipe.save_recipe()

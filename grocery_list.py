@@ -38,19 +38,10 @@ class GroceryList:
             index += 1
         print('\n')
 
-    def remove_item(self, item_to_remove):
-        segments = item_to_remove.split(' - ')
-        item = segments[0]
-
+    def remove_item(self, item, quantity):
         while item not in self.items:
             print('Sorry, that item is not on the list')
             item = input('>> ').split(' - ')[0]
-
-        if len(segments) > 1:
-            quantity = int(segments[1])
-        else:
-            print('How many?')
-            quantity = int(input('>> '))
 
         if self.items[item] == quantity:
             self.items.pop(item)
@@ -59,18 +50,9 @@ class GroceryList:
         else:
             print('You do not have that many to remove')
 
-    def add_item(self, item_to_add):
-        segments = item_to_add.split(' - ')
-        item = segments[0]
-
+    def add_item(self, item, quantity):
         if item not in ConfigService.get_items():
             ConfigService.add_category(ConfigService.select_category(), item)
-
-        if len(segments) > 1:
-            quantity = int(segments[1])
-        else:
-            print('How many?')
-            quantity = int(input('>> '))
 
         if item in self.items.keys():
             self.items[item] += quantity
