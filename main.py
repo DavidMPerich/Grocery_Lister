@@ -3,14 +3,13 @@ from grocery_list import GroceryList
 from recipe import Recipe
 from config.config_service import ConfigService
 from data.data_service import DataService
-
+from validator import Validator
 
 #VARIABLES
 TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
 exit_program = False
-VALID_RESPONSES = ['y', 'n']
 
 
 #TODO: Search Recipe By Ingredient
@@ -39,56 +38,6 @@ def print_header():
     print('\n')
 
 
-def validate_yes_no(response):
-    while response not in VALID_RESPONSES:
-        print('Sorry, that is not a valid response')
-        response = input('>> ')
-    return response
-
-
-def validate_recipe_selection(index, recipe_list):
-    while (index - 1) < 0 or index > len(recipe_list):
-        print(f'{index} is not an option. Please choose another')
-        index = int(input('>> '))
-    return index
-
-
-def validate_cost(response):
-    while True:
-        try:
-            cost = float(response)
-            return cost
-        except ValueError:
-            print(f'Please enter a valid price')
-            response = input('>> ')
-
-
-def validate_serving_size(response):
-    while True:
-        try:
-            serving_size = int(response)
-            return serving_size
-        except ValueError:
-            print(f'Please enter a valid number')
-            response = input('>> ')
-
-
-def validate_ingredient(response):
-    segments = response.split(' - ')
-
-    while True:
-        try:
-            ingredient = segments[0]
-            quantity = int(segments[1])
-            return ingredient, quantity
-        except ValueError:
-            print('Please enter a valid quantity')
-            segments = input('>> ').split(' - ')
-        except IndexError:
-            print('Please include the quantity')
-            segments = input('>> ').split(' - ')
-
-
 def print_commands():
     command_list = '|'
     for command in COMMANDS:
@@ -110,7 +59,7 @@ def create_list():
     selected_recipes = [int(x) for x in input('>> ').split(',')]
 
     for index in selected_recipes:
-        index = validate_recipe_selection(index, available_recipes)
+        index = Validator.recipe_selection(index, available_recipes)
         selected_recipe = DataService.get_recipes()[index - 1]
         ingredients = DataService.get_ingredients(selected_recipe)
         grocery_list.add_recipe_ingredients(ingredients)
@@ -119,14 +68,14 @@ def create_list():
 
     #REMOVE ITEMS
     print('Would you like to remove any items? (y/n)')
-    response = validate_yes_no(input('>> '))
+    response = Validator.yes_no(input('>> '))
 
     if response == 'y':
-        print('Which items would you like to remove?')
+        print('Which items would you like to remove? (e.g. item - quantity)')
         response = input('>> ')
 
         while response:
-            (item, quantity) = validate_ingredient(response)
+            (item, quantity) = Validator.ingredient(response)
             grocery_list.remove_item(item, quantity)
             response = input('>> ')
 
@@ -134,17 +83,17 @@ def create_list():
 
     #ADD ITEMS
     print('Would you like to add any items? (y/n)')
-    response = validate_yes_no(input('>> '))
+    response = Validator.yes_no(input('>> '))
 
     if response == 'y':
         for item in ConfigService.get_items():
             print(item)
 
-        print('Which items do you want to add?')
+        print('Which items do you want to add? (e.g. item - quantity)')
         response = input('>> ')
 
         while response:
-            (item, quantity) = validate_ingredient(response)
+            (item, quantity) = Validator.ingredient(response)
             grocery_list.add_item(item, quantity)
             response = input('>> ')
 
@@ -161,19 +110,19 @@ def add_recipe():
     name = input('>> ').title()
     recipe.set_name(name)
 
-    print('What are the ingredients?')
+    print('What are the ingredients? (e.g. item - quantity)')
     response = input('>> ')
     while response:
-        (ingredient, quantity) = validate_ingredient(response)
+        (ingredient, quantity) = Validator.ingredient(response)
         recipe.add_ingredient(ingredient, quantity)
         response = input('>> ')
 
     print('How much does this recipe cost?')
-    cost = validate_cost(input('>> '))
+    cost = Validator.cost(input('>> '))
     recipe.set_cost(cost)
 
     print('How many does this recipe serve?')
-    serving_size = validate_serving_size(input('>> '))
+    serving_size = Validator.serving_size(input('>> '))
     recipe.set_serving_size(serving_size)
 
     recipe.save_recipe()
@@ -188,7 +137,6 @@ if TEST_MODE:
     exit()
 
 print_header()
-
 #Main Loop
 while not exit_program:
     print_commands()
