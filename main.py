@@ -37,7 +37,7 @@ def print_header():
     print('\n')
 
 
-def validate_response(response):
+def validate_yes_no(response):
     while response not in VALID_RESPONSES:
         print('Sorry, that is not a valid response')
         response = input('>> ')
@@ -49,6 +49,21 @@ def validate_recipe_selection(index, recipe_list):
         print(f'{index} is not an option. Please choose another')
         index = int(input('>> '))
     return index
+
+
+def validate_ingredient(response):
+    segments = response.split(' - ')
+
+    while True:
+        try:
+            quantity = int(segments[1])
+            return segments[0], int(segments[1])
+        except ValueError:
+            print('Please enter a valid quantity')
+            segments = input('>> ').split(' - ')
+        except IndexError:
+            print('Please include the quantity')
+            segments = input('>> ').split(' - ')
 
 
 def print_commands():
@@ -81,7 +96,7 @@ def create_list():
 
     #REMOVE ITEMS
     print('Would you like to remove any items? (y/n)')
-    response = validate_response(input('>> '))
+    response = validate_yes_no(input('>> '))
 
     if response == 'y':
         print('Which items would you like to remove?')
@@ -95,7 +110,7 @@ def create_list():
 
     #ADD ITEMS
     print('Would you like to add any items? (y/n)')
-    response = validate_response(input('>> '))
+    response = validate_yes_no(input('>> '))
 
     if response == 'y':
         for item in ConfigService.get_items():
@@ -113,7 +128,6 @@ def create_list():
     grocery_list.print_items()
 
 
-#TODO: Refactor
 def add_recipe():
     recipe = Recipe()
     items = ConfigService.get_items()
@@ -125,7 +139,8 @@ def add_recipe():
     print('What are the ingredients?')
     response = input('>> ')
     while response:
-        recipe.add_ingredients(response)
+        (ingredient, quantity) = validate_ingredient(response)
+        recipe.add_ingredient(ingredient, quantity)
         response = input('>> ')
 
     print('How much does this recipe cost?')

@@ -41,5 +41,12 @@
         },
         "approximate cost": 3.33,
         "serving size": 1
+    },
+    "Flakey Bits": {
+        "ingredients": {
+            "life cereal": 1
+        },
+        "approximate cost": 4.0,
+        "serving size": 2
     }
 }

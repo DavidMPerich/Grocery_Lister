@@ -14,17 +14,7 @@ class Recipe:
     def set_name(self, name):
         self.name = name
 
-    def add_ingredients(self, ingredients):
-        segments = ingredients.split(' - ')
-        ingredient = segments[0]
-
-        if len(segments) > 1:
-            quantity = int(segments[1])
-        else:
-            #TODO: Add Validation
-            print('How many?')
-            quantity = int(input('>>'))
-
+    def add_ingredient(self, ingredient, quantity):
         if ingredient not in ConfigService.get_items():
             ConfigService.add_category(ConfigService.select_category(), ingredient)
 
