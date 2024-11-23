@@ -1,5 +1,6 @@
 import json
 from config.config_service import ConfigService
+from validator import Validator
 
 
 class GroceryList:
@@ -49,9 +50,6 @@ class GroceryList:
             print('You do not have that many to remove')
 
     def add_item(self, item, quantity):
-        if item not in ConfigService.get_items():
-            ConfigService.add_category(ConfigService.select_category(), item)
-
         if item in self.items.keys():
             self.items[item] += quantity
         else:

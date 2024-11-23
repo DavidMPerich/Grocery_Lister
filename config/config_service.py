@@ -1,4 +1,5 @@
 import json
+from validator import Validator
 
 
 class ConfigService:
@@ -9,7 +10,6 @@ class ConfigService:
 
         categories = []
         index = 1
-        print('Which category does this belong in?')
         for aisle in layout:
             categories += layout[aisle]
 
@@ -18,7 +18,8 @@ class ConfigService:
             print(f'{index}. {category}')
             index += 1
 
-        response = int(input('>> '))
+        print('Which category does this belong in?')
+        response = Validator.category(input('>> '), len(ConfigService.get_sections()))
         return categories[response - 1]
 
     @staticmethod

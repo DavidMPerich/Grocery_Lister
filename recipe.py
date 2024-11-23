@@ -1,5 +1,6 @@
 import json
 from config.config_service import ConfigService
+from validator import Validator
 
 
 class Recipe:
@@ -13,9 +14,6 @@ class Recipe:
         self.name = name
 
     def add_ingredient(self, ingredient, quantity):
-        if ingredient not in ConfigService.get_items():
-            ConfigService.add_category(ConfigService.select_category(), ingredient)
-
         self.ingredients[ingredient] = quantity
 
     def set_cost(self, cost):

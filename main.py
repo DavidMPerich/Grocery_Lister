@@ -43,7 +43,7 @@ def create_list():
         print(f'{index}. {recipe}')
         index += 1
     print('\nPlease select which recipes to add to the grocery list:')
-    response = Validator.recipe_selection(input('>> '))
+    response = Validator.recipe_selection(input('>> '), len(available_recipes))
 
     for index in response:
         selected_recipe = DataService.get_recipes()[index - 1]
@@ -78,6 +78,8 @@ def create_list():
 
         while response:
             (item, quantity) = Validator.ingredient(response)
+            if item not in ConfigService.get_items():
+                ConfigService.add_category(ConfigService.select_category(), item)
             grocery_list.add_item(item, quantity)
             response = input('>> ')
 
@@ -87,7 +89,6 @@ def create_list():
 
 def add_recipe():
     recipe = Recipe()
-    items = ConfigService.get_items()
 
     print('What is the name of the recipe?')
     name = input('>> ').title()
@@ -97,6 +98,8 @@ def add_recipe():
     response = input('>> ')
     while response:
         (ingredient, quantity) = Validator.ingredient(response)
+        if ingredient not in ConfigService.get_items():
+            ConfigService.add_category(ConfigService.select_category(), ingredient)
         recipe.add_ingredient(ingredient, quantity)
         response = input('>> ')
 
