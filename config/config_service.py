@@ -4,25 +4,6 @@ from validator import Validator
 
 class ConfigService:
     @staticmethod
-    def select_category():
-        with open('config/layout.json', 'r') as data_file:
-            layout = json.load(data_file)
-
-        categories = []
-        index = 1
-        for aisle in layout:
-            categories += layout[aisle]
-
-        categories = sorted(categories)
-        for category in categories:
-            print(f'{index}. {category}')
-            index += 1
-
-        print('Which category does this belong in?')
-        response = Validator.category(input('>> '), len(ConfigService.get_sections()))
-        return categories[response - 1]
-
-    @staticmethod
     def add_category(category, ingredient):
         with open('config/category_lookup.json', 'r') as data_file:
             cat_lookup = json.load(data_file)

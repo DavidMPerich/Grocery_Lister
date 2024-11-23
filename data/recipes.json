@@ -48,5 +48,19 @@
         },
         "approximate cost": 4.99,
         "serving size": 2
+    },
+    "Test Food": {
+        "ingredients": {
+            "cherry pie": 1
+        },
+        "approximate cost": 8.0,
+        "serving size": 2
+    },
+    "Blah Blah": {
+        "ingredients": {
+            "sugar cookie": 2
+        },
+        "approximate cost": 6.0,
+        "serving size": 4
     }
 }

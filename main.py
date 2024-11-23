@@ -33,6 +33,18 @@ def print_commands():
     print(command_list)
 
 
+def select_category(item):
+    if item not in ConfigService.get_items():
+        index = 1
+        categories = sorted(ConfigService.get_sections())
+        for category in categories:
+            print(f'{index}. {category}')
+            index += 1
+        print('Which category does this belong to?')
+        response = Validator.category(input('>> '), len(categories))
+        ConfigService.add_category(categories[response - 1], item)
+
+
 def create_list():
     grocery_list = GroceryList()
 
@@ -79,7 +91,7 @@ def create_list():
         while response:
             (item, quantity) = Validator.ingredient(response)
             if item not in ConfigService.get_items():
-                ConfigService.add_category(ConfigService.select_category(), item)
+                select_category(item)
             grocery_list.add_item(item, quantity)
             response = input('>> ')
 
@@ -99,7 +111,7 @@ def add_recipe():
     while response:
         (ingredient, quantity) = Validator.ingredient(response)
         if ingredient not in ConfigService.get_items():
-            ConfigService.add_category(ConfigService.select_category(), ingredient)
+            select_category(ingredient)
         recipe.add_ingredient(ingredient, quantity)
         response = input('>> ')
 
