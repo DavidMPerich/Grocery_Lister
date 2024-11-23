@@ -1,3 +1,5 @@
+from data.data_service import DataService
+
 class Validator:
 
     @staticmethod
@@ -8,11 +10,22 @@ class Validator:
         return response
 
     @staticmethod
-    def recipe_selection(index, recipe_list):
-        while (index - 1) < 0 or index > len(recipe_list):
-            print(f'{index} is not an option. Please choose another')
-            index = int(input('>> '))
-        return index
+    def recipe_selection(response):
+        while True:
+            try:
+                selected_recipes = [int(x) for x in response.split(',')]
+                valid_response = True
+                for index in selected_recipes:
+                    if (index - 1) < 0 or index > len(DataService.get_recipes()):
+                        print(f'{index} is not an available option. Please re-enter your list.')
+                        response = input('>> ')
+                        valid_response = False
+                        break
+                if valid_response:
+                    return selected_recipes
+            except ValueError:
+                print('Please enter a valid list.')
+                response = input('>> ')
 
     @staticmethod
     def cost(response):

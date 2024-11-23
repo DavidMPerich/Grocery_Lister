@@ -43,10 +43,9 @@ def create_list():
         print(f'{index}. {recipe}')
         index += 1
     print('\nPlease select which recipes to add to the grocery list:')
-    selected_recipes = [int(x) for x in input('>> ').split(',')]
+    response = Validator.recipe_selection(input('>> '))
 
-    for index in selected_recipes:
-        index = Validator.recipe_selection(index, available_recipes)
+    for index in response:
         selected_recipe = DataService.get_recipes()[index - 1]
         ingredients = DataService.get_ingredients(selected_recipe)
         grocery_list.add_recipe_ingredients(ingredients)
