@@ -33,32 +33,35 @@ def print_commands():
     print(command_list)
 
 
+def index_list(list_to_print):
+    index = 1
+    for item in list_to_print:
+        print(f'{index}. {item}')
+        index += 1
+
+
 def select_category(item):
     if item not in ConfigService.get_items():
-        index = 1
         categories = sorted(ConfigService.get_sections())
-        for category in categories:
-            print(f'{index}. {category}')
-            index += 1
+        size = len(categories)
+
+        index_list(categories)
         print('Which category does this belong to?')
-        response = Validator.category(input('>> '), len(categories))
+        response = Validator.category(input('>> '), size)
         ConfigService.add_category(categories[response - 1], item)
 
 
 def create_list():
     grocery_list = GroceryList()
-
-    index = 1
     available_recipes = DataService.get_recipes()
+    size = len(available_recipes)
 
-    for recipe in available_recipes:
-        print(f'{index}. {recipe}')
-        index += 1
+    index_list(available_recipes)
     print('\nPlease select which recipes to add to the grocery list:')
-    response = Validator.recipe_selection(input('>> '), len(available_recipes))
+    response = Validator.recipe_selection(input('>> '), size)
 
     for index in response:
-        selected_recipe = DataService.get_recipes()[index - 1]
+        selected_recipe = available_recipes[index - 1]
         ingredients = DataService.get_ingredients(selected_recipe)
         grocery_list.add_recipe_ingredients(ingredients)
 
