@@ -1,8 +1,6 @@
 import json
 from config.config_service import ConfigService
 
-#TODO: Refactor to remove ConfigService if possible
-
 
 class GroceryList:
     def __init__(self):
@@ -39,9 +37,9 @@ class GroceryList:
         print('\n')
 
     def remove_item(self, item, quantity):
-        while item not in self.items:
+        if item not in self.items:
             print('Sorry, that item is not on the list')
-            item = input('>> ').split(' - ')[0]
+            return
 
         if self.items[item] == quantity:
             self.items.pop(item)

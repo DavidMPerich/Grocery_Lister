@@ -2,9 +2,6 @@ import json
 
 
 class ConfigService:
-
-    #TODO: Remove Any Unnecessary IO
-
     @staticmethod
     def select_category():
         with open('config/layout.json', 'r') as data_file:
@@ -12,8 +9,6 @@ class ConfigService:
 
         categories = []
         index = 1
-
-        #TODO: Make Easier To Select Category
         print('Which category does this belong in?')
         for aisle in layout:
             categories += layout[aisle]

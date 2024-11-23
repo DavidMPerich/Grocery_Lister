@@ -17,8 +17,6 @@ exit_program = False
 
 #TODO: Add Price to Ingredients to Determine Cost
 
-#TODO: Print v Text
-
 
 def print_header():
     print('\n')
