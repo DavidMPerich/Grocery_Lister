@@ -7,11 +7,12 @@ from validator import Validator
 TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
 COMMANDS = ['create list', 'add recipe', 'test', 'exit']
+GROUPS = ['Chicken', 'Beef', 'Vegetarian', 'Seafood', 'Sausage']
 exit_program = False
 
-#TODO: Search Recipe By Ingredient
+#TODO: Search By Ingredient
 
-#TODO: Categorize Recipes
+#TODO: Serach By Group
 
 #TODO: Add Website Link to Recipe
 
@@ -108,6 +109,12 @@ def add_recipe():
     print('What is the name of the recipe?')
     name = input('>> ').title()
     recipe.set_name(name)
+
+    index_list(GROUPS)
+    size = len(GROUPS)
+    print('What type of recipe is it?')
+    response = Validator.group(input('>> '), size)
+    recipe.set_group(GROUPS[response - 1])
 
     print('What are the ingredients? (e.g. item - quantity)')
     response = input('>> ')

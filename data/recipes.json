@@ -62,5 +62,14 @@
         },
         "approximate cost": 6.0,
         "serving size": 4
+    },
+    "Fish Tacos": {
+        "group": "Seafood",
+        "ingredients": {
+            "fish": 1,
+            "tortillas": 1
+        },
+        "approximate cost": 6.0,
+        "serving size": 3
     }
 }

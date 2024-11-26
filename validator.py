@@ -8,6 +8,22 @@ class Validator:
         return response
 
     @staticmethod
+    def group(response, size):
+        while True:
+            try:
+                index = int(response)
+                valid_response = True
+                if (index - 1) < 0 or index > size:
+                    print(f'{index} is not an available option. Please re-enter the type.')
+                    response = input('>> ')
+                    valid_response = False
+                if valid_response:
+                    return index
+            except ValueError:
+                print('Please enter a valid index')
+                response = input('>> ')
+
+    @staticmethod
     def recipe_selection(response, size):
         while True:
             try:

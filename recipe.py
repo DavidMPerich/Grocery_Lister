@@ -6,12 +6,16 @@ from validator import Validator
 class Recipe:
     def __init__(self):
         self.name = ''
+        self.group = ''
         self.ingredients = {}
         self.cost = 0.00
         self.serving_size = 0
 
     def set_name(self, name):
         self.name = name
+
+    def set_group(self, group):
+        self.group = group
 
     def add_ingredient(self, ingredient, quantity):
         self.ingredients[ingredient] = quantity
@@ -25,6 +29,7 @@ class Recipe:
     def save_recipe(self):
         new_recipe = {
             self.name: {
+                'group': self.group,
                 'ingredients': self.ingredients,
                 'approximate cost': self.cost,
                 'serving size': self.serving_size
