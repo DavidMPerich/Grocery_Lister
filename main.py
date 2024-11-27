@@ -4,13 +4,13 @@ from config.config_service import ConfigService
 from data.data_service import DataService
 from validator import Validator
 
-TEST_MODE = False
+
 HEADER = 'Welcome To Grocery Lister'
-COMMANDS = ['create list', 'add recipe', 'search', 'test', 'exit']
+COMMANDS = ['create list', 'add recipe', 'search', 'exit']
 GROUPS = ['Chicken', 'Beef', 'Vegetarian', 'Seafood', 'Sausage']
 exit_program = False
 
-#TODO: Add Website Link to Recipe
+#TODO: Find URL
 
 
 def print_header():
@@ -127,6 +127,10 @@ def add_recipe():
     serving_size = Validator.serving_size(input('>> '))
     recipe.set_serving_size(serving_size)
 
+    print('What is the URL of the recipe?')
+    url = input('>> ')
+    recipe.set_url(url)
+
     recipe.save_recipe()
 
 
@@ -156,12 +160,8 @@ def search_by_ingredient():
 
 
 def test():
-    pass
+    print('Test Mode')
 
-
-if TEST_MODE:
-    test()
-    exit()
 
 print_header()
 #Main Loop

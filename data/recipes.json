@@ -79,5 +79,15 @@
         },
         "approximate cost": 6.0,
         "serving size": 3
+    },
+    "Sausage Orzo": {
+        "group": "Sausage",
+        "ingredients": {
+            "sausage": 1,
+            "frozen corn": 1
+        },
+        "approximate cost": 12.3,
+        "serving size": 12,
+        "url": "https://www.skinnytaste.com/one-pot-orzo-with-sausage-spinach-and-corn/?fbclid=IwAR1Qlh05GbB0FDHRvGIs26CsRhHUCGsrRDI0G88hsYn9zHfyTvQr19Ltj18#recipe"
     }
 }

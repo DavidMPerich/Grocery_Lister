@@ -1,5 +1,4 @@
 import json
-from validator import Validator
 
 
 class ConfigService:
