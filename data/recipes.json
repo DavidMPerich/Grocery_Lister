@@ -1,5 +1,6 @@
 {
     "Apple Pie": {
+        "group": "Seafood",
         "ingredients": {
             "apple": 5,
             "pie crust": 1
@@ -8,6 +9,7 @@
         "serving size": 4
     },
     "Turkey Sandwhich": {
+        "group": "Chicken",
         "ingredients": {
             "turkey": 1,
             "whole wheat bread": 1,
@@ -17,6 +19,7 @@
         "serving size": 6
     },
     "Peach Cobbler": {
+        "group": "Beef",
         "ingredients": {
             "peach": 3,
             "pie crust": 1,
@@ -26,6 +29,7 @@
         "serving size": 2
     },
     "Chicken Salad": {
+        "group": "Beef",
         "ingredients": {
             "whole chicken": 1,
             "mayo": 1,
@@ -35,6 +39,7 @@
         "serving size": 2
     },
     "Sundae": {
+        "group": "Vegetarian",
         "ingredients": {
             "vanilla ice cream": 1,
             "chocolate syrup": 1
@@ -43,6 +48,7 @@
         "serving size": 1
     },
     "Flakey Bits": {
+        "group": "Seafood",
         "ingredients": {
             "life cereal": 1
         },
@@ -50,6 +56,7 @@
         "serving size": 2
     },
     "Test Food": {
+        "group": "Sausage",
         "ingredients": {
             "cherry pie": 1
         },
@@ -57,6 +64,7 @@
         "serving size": 2
     },
     "Blah Blah": {
+        "group": "Chicken",
         "ingredients": {
             "sugar cookie": 2
         },

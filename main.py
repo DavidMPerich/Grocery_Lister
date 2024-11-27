@@ -6,17 +6,11 @@ from validator import Validator
 
 TEST_MODE = False
 HEADER = 'Welcome To Grocery Lister'
-COMMANDS = ['create list', 'add recipe', 'test', 'exit']
+COMMANDS = ['create list', 'add recipe', 'search', 'test', 'exit']
 GROUPS = ['Chicken', 'Beef', 'Vegetarian', 'Seafood', 'Sausage']
 exit_program = False
 
-#TODO: Search By Ingredient
-
-#TODO: Serach By Group
-
 #TODO: Add Website Link to Recipe
-
-#TODO: Add Price to Ingredients to Determine Cost
 
 
 def print_header():
@@ -76,7 +70,7 @@ def create_list():
         response = input('>> ')
 
         while response:
-            (item, quantity) = Validator.ingredient(response)
+            (item, quantity) = Validator.ingredient_quantity(response)
             grocery_list.remove_item(item, quantity)
             response = input('>> ')
 
@@ -93,7 +87,7 @@ def create_list():
         response = input('>> ')
 
         while response:
-            (item, quantity) = Validator.ingredient(response)
+            (item, quantity) = Validator.ingredient_quantity(response)
             if item not in ConfigService.get_items():
                 select_category(item)
             grocery_list.add_item(item, quantity)
@@ -119,7 +113,7 @@ def add_recipe():
     print('What are the ingredients? (e.g. item - quantity)')
     response = input('>> ')
     while response:
-        (ingredient, quantity) = Validator.ingredient(response)
+        (ingredient, quantity) = Validator.ingredient_quantity(response)
         if ingredient not in ConfigService.get_items():
             select_category(ingredient)
         recipe.add_ingredient(ingredient, quantity)
@@ -134,6 +128,31 @@ def add_recipe():
     recipe.set_serving_size(serving_size)
 
     recipe.save_recipe()
+
+
+def search_by_group():
+    index_list(GROUPS)
+    size = len(GROUPS)
+    print('Which recipes would you like to view?')
+    response = Validator.group(input('>> '), size)
+    group = GROUPS[response - 1]
+    recipes = DataService.get_recipes_by_group(group)
+    for recipe in recipes:
+        print(recipe)
+
+
+def search_by_ingredient():
+    available_items = ConfigService.get_items()
+    for item in available_items:
+        print(item)
+    print('Which ingredient would you like to search for?')
+    response = input('>> ').lower()
+    if response not in available_items:
+        print(f'No recipes contain {response}')
+    else:
+        recipes = DataService.get_recipes_by_ingredient(response)
+        for recipe in recipes:
+            print(recipe)
 
 
 def test():
@@ -153,6 +172,19 @@ while not exit_program:
             create_list()
         case 'add recipe':
             add_recipe()
+        case 'search':
+            print('What would you like to search by?')
+            print('|group|ingredient|')
+            while True:
+                match input('>> '):
+                    case 'group':
+                        search_by_group()
+                        break
+                    case 'ingredient':
+                        search_by_ingredient()
+                        break
+                    case _:
+                        print('Sorry, that is not an option')
         case 'test':
             test()
         case 'exit':

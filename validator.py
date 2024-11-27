@@ -78,7 +78,7 @@ class Validator:
                 response = input('>> ')
 
     @staticmethod
-    def ingredient(response):
+    def ingredient_quantity(response):
         segments = response.split(' - ')
 
         while True:
